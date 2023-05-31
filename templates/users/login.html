@@ -1,0 +1,36 @@
+{% load widget_tweaks %}
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title text-center w-100">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.extra_tags == 'account_created' %}
+                    <h6 class="text-success">{{ message }}</h6>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+            <h6 class="text-danger">
+                The username and password combination is not recognized. Please try again.
+            </h6>
+        {% endif %}
+        
+        <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+            {% render_field form.username class="form-control" placeholder="Please enter your username" %}
+            <div class="invalid-feedback">{{ form.username.errors|first }}</div>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }}</label>
+            {% render_field form.password class="form-control" placeholder="Please enter your password" %}
+            <div class="invalid-feedback">{{ form.password.errors|first }}</div>
+        </div>
+        <button type="submit" class="bright-button w-100 mb-3">Login</button>
+        <a class="modal-a" hx-get="{% url 'register' %}" hx-target="#dialog">Don't have an account, sign up</a>
+    </div>
+</form>
+{% endwith %}

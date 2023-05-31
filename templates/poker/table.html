@@ -1,0 +1,72 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Website with Background Video Easy Tutorials</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'poker/css/main.min.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'poker/style2.css' %}"> -->
+
+    </head>
+
+    <body class="poker-room">
+        <div class="poker-table">
+            <div class="seat1">
+                <!-- <div class="cards">
+                    <img src="../../../media/cards/back.svg">
+                    <img src="../../../media/cards/back.svg">
+                </div> -->
+                <div class="player-info">
+                    <img class="account-img" id="seat1-img" src="">
+                    <div class="flex-grow-1 justify-content-center">
+                        <span id="seat1-username"></span>
+                        <hr class="border-2">
+                        <span id="seat1-stack"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="seat2">
+                <div class="player-info">
+                    <img class="account-img" id="seat2-img" src="">
+                    <div class="flex-grow-1 justify-content-center">
+                        <span id="seat2-username"></span>
+                        <hr class="border-2">
+                        <span id="seat2-stack"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="seat3"><div class="player-info"></div></div>
+            <div class="seat4"><div class="player-info"></div></div>
+            <div class="seat5"><div class="player-info"></div></div>
+            <div class="seat6"><div class="player-info"></div></div>
+            <div class="seat7"><div class="player-info"></div></div>
+            <div class="seat8"><div class="player-info"></div></div>
+            <div class="seat9"><div class="player-info"></div></div>
+            <!-- <img class="seat1" src="{{ user.profile.image.url }}">
+            <img class="seat2" src="{{ user.profile.image.url }}">
+            <img class="seat3" src="{{ user.profile.image.url }}">
+            <img class="seat4" src="{{ user.profile.image.url }}">
+            <img class="seat5" src="{{ user.profile.image.url }}">
+            <img class="seat6" src="{{ user.profile.image.url }}">
+            <img class="seat7" src="{{ user.profile.image.url }}">
+            <img class="seat8" src="{{ user.profile.image.url }}">
+            <img class="seat9" src="{{ user.profile.image.url }}"> -->
+        </div>
+        <!-- <div class="d-flex justify-content-center">
+            <button onclick="handleClick('fold')" class="bg-primary">Fold</button>
+            <button onclick="handleClick('call')" class="bg-primary">Call</button>
+            <button onclick="handleClick('raise')" class="bg-primary">Raise</button>
+        </div> -->
+        <div class="position-absolute top-0 end-0">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="outline-button m-5 px-5">
+                    Sit out
+                </button>
+            </form>
+        </div>
+        {{ table_id|json_script:"table_id" }}
+        {{ user.username|json_script:"username"}}
+        <script src="{% static 'poker/js/ws.js' %}"></script>
+    </body>
+</html>

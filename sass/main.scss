@@ -1,0 +1,176 @@
+@use 'sass:math';
+
+
+$nav-link-padding-y: 0;
+
+// import functions and variables
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+
+$custom-theme-colors: (
+    "purple": purple,
+    "gray": gray,
+    "pink": pink,
+    "silver": silver,
+    "gold": gold,
+    "white": white,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// import bootstrap
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+.fixed-top {
+    a {
+        color: white;
+    }
+}
+
+// .fixed-bottom {
+//     a {
+//         &:hover, &:focus, &:active  {
+//             color: red;
+//         }
+//     }
+// }
+.fixed-bottom {
+    a:is(:link, :active, :visited).active {
+        color: red;
+    }
+}
+
+
+%simple-button {
+    @extend .btn, .btn-sm, .rounded-pill;
+} 
+
+.outline-button {
+    @extend %simple-button, .btn-outline-white, .border-2;
+    a:hover {
+        color: black;
+        font-weight: bold;
+    } 
+}
+
+.bright-button {
+    @extend %simple-button, .btn-gold;
+    a {
+        color: black;
+    } 
+    a:hover {
+        color: black;
+        font-weight: bold;
+    } 
+}
+
+.modal-a {
+    @extend .d-flex, .justify-content-center;
+    text-decoration: none;
+    font-weight: bolder;
+    &:hover { 
+        text-decoration: underline; 
+    }
+}
+
+.account-img {
+    @extend .rounded-circle;
+    aspect-ratio: 1;
+    height: 75px;
+}
+
+// @each $bp, $bp_px in $grid-breakpoints {
+//     $size: 20px;
+//     @media (min-width: $bp_px) {
+//         @if $bp_px != 0 {
+//             $size: math.div($bp_px, 20);      
+//         } 
+//         .account-img {
+//             height: $size;
+//             width: $size;
+//         }
+//     }
+// }
+// @media (min-width: 0) {
+//     .account-img {
+//         height: 30px;
+//         width: 30px;
+//     }
+// }
+// @media (min-width: 901px) {
+//     .account-img {
+//         height: 50px;
+//         width: 50px;
+//     }
+// }
+
+
+@for $i from 1 through 9 {
+    .seat#{$i} {
+        grid-area: seat#{$i};
+        padding: 10% 10%;
+    }
+}
+
+.poker-room {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+.poker-table {
+    width: calc(3230/1700 * 100vh);
+    aspect-ratio: 3230/1700;
+    background-image: url("../../../media/cut_table.png");
+    background-color: black;
+    background-size: contain;
+    display: grid;
+    grid-template-areas:
+            '   .      seat5     seat6     seat7      .   '
+            'seat4       .         .         .        .   '
+            '   .        .         .         .      seat8'
+            'seat3       .         .         .        .   '
+            '   .      seat2     seat1     seat9      .   ';
+    grid-auto-columns: 20%;
+    grid-auto-rows: 20%;
+
+}
+
+.player-info {
+    @extend .rounded-pill, .bg-silver;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .account-img {
+        height: 100%;
+    }
+    hr {
+        margin: 0;
+    }
+}
+
+// .cards {
+//     position: relative;
+//     width: 100%;
+//     height: 0;
+//     padding-top: calc(100% * (3.5 / 5));
+//     img {
+//         position: absolute;
+//         top: 0;
+//         width: 100%;
+//         height: 100%;
+//     }
+// }
+
+.cards {
+    
+    img {
+        width: 100%; 
+        height: 50%; 
+        object-fit: cover;
+        object-position: 25% 25%;
+    }
+}

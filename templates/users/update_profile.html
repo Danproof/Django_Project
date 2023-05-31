@@ -1,0 +1,33 @@
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' hx-encoding="multipart/form-data" class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title text-center w-100">Profile details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="{{ u_form.username.id_for_label }}" class="form-label">{{ u_form.username.label }}</label>
+            {% render_field u_form.username class="form-control" %}
+            <div class="invalid-feedback">{{ u_form.username.errors|first }}</div>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.email.id_for_label }}" class="form-label">{{ u_form.email.label }}</label>
+            {% render_field u_form.email class="form-control" %}
+            <div class="invalid-feedback">{{ u_form.email.errors|first }}</div>
+        </div>
+        <div class="mb-3">
+            <div >
+                <label for="{{ p_form.image.id_for_label }}" class="form-label">{{ p_form.image.label }}</label>
+                <br>
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+            </div>
+            {% render_field p_form.image class="form-control" %}
+            <div class="invalid-feedback">{{ p_form.image.errors|first }}</div>
+        </div>
+        <button type="submit" class="bright-button w-100 mb-3">Update</button>
+        <a class="modal-a" hx-get="{% url 'profile' %}" hx-target="#dialog">Back to profile</a>
+    </div>
+</form>
+{% endwith %}

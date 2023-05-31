@@ -1,0 +1,70 @@
+.poker-room {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+.poker-table {
+    width: calc(3230/1700 * 100vh);
+    aspect-ratio: 3230/1700;
+    background-image: url("cut_table.png");
+    background-color: black;
+    background-size: contain;
+    display: grid;
+    grid-template-areas:
+            '   .      seat5     seat6     seat7      .   '
+            'seat4       .         .         .        .   '
+            '   .        .         .         .      seat8'
+            'seat3       .         .         .        .   '
+            '   .      seat2     seat1     seat9      .   ';
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10%;
+}
+
+.seat1 {
+    grid-area: seat1;
+}
+.seat2 {
+    grid-area: seat2;
+}
+.seat3 {
+    grid-area: seat3;
+}
+.seat4 {
+    grid-area: seat4;
+}
+.seat5 {
+    grid-area: seat5;
+}
+.seat6 {
+    grid-area: seat6;
+}
+.seat7 {
+    grid-area: seat7;
+}
+.seat8 {
+    grid-area: seat8;
+}
+.seat9 {
+    grid-area: seat9;
+}
+
+.account-img {
+    aspect-ratio: 1;
+}
+
+.player-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.player-info .account-img {
+    height: 100%;
+}
+.player-info hr {
+    margin: 0;
+}

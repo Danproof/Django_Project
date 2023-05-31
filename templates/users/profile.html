@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content">
+    <div class="modal-header">
+              <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+              <div>
+                <h2>{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+              </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.extra_tags == 'account_updated' %}
+                    <h6 class="text-success mb-3">{{ message }}</h6>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <h6>Balance: {{ user.profile.balance }} chips</h2>
+        <a class="modal-a mb-3" hx-get="{% url 'update-profile' %}" hx-target="#dialog">Update account information</a>
+        <a class="modal-a" hx-get="{% url 'logout' %}" hx-target="#dialog">Log out</a>
+    </div>
+</form>
+{% endwith %}

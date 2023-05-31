@@ -1,0 +1,6 @@
+package-lock.json
+package.json
+venv2
+node_modules
+.vscode
+__pycache__

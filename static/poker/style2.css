@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.table{
+    height: 100vh;
+    background-image: url("../../media/table_tiny.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    grid-template-areas:
+            '   .      player5   player6   player7      .   '
+            'player4      .         .         .         .   '
+            '   .         .         .         .      player8'
+            'player3      .         .         .         .   '
+            '   .      player2   player1   player9      .   ';
+    
+    /*position: relative; 
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  */
+}
+
+.player1, .player2, .player3, .player4, .player5, .player6, .player7, .player8, .player9 {
+    border: 3px solid red;
+}
+
+.player1 {
+    grid-area: player1;
+}
+.player2 {
+    grid-area: player2;
+}
+.player3 {
+    grid-area: player3;
+}
+.player4 {
+    grid-area: player4;
+}
+.player5 {
+    grid-area: player5;
+}
+.player6 {
+    grid-area: player6;
+}
+.player7 {
+    grid-area: player7;
+}
+.player8 {
+    grid-area: player8;
+}
+.player9 {
+    grid-area: player9;
+}
